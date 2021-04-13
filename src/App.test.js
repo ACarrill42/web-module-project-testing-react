@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, userEvent, waitFor } from '@testing-library/react';
 import App from './App';
+import Episode from './components/Episode';
 
 test('target dropdown', async ()=>{
     render(<App/>);
@@ -11,3 +12,7 @@ test('target dropdown', async ()=>{
     });
     
 });
+
+test('Episode Component Test', () => {
+  render(<Episode episode = {true}/>)
+})
