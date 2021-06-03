@@ -3,15 +3,44 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Show from './../Show';
+import Loading from '../Loading';
+
+
 
 const testShow = {
     //add in approprate test data structure here.
+  show: {
+    name: 'Stranger Things',
+    summary: 'Strange Things happen in a small town in the 70s',
+    seasons: [
+      {id: '1',
+       name: 'season_1',
+       episodes: []},
+      {id: '2',
+      name: 'season_2',
+      episodes: []},
+      {id: '3',
+      name: 'season_3',
+      episodes: []},
+      {id: '4',
+      name: 'season_4',
+      episodes: []}
+    ]
+  }
 }
 
+const {rerender} = render(<Show show = {[]}/>)
+
 test('renders testShow and no selected Season without errors', ()=>{
+  render(<Show show = {testShow.show} selectedSeason = {'none'}/>);
+  screen.debug()
+  
 });
 
 test('renders Loading component when prop show is null', () => {
+  render(<Show show = {null}/>);
+
+  rerender(<Loading show = {null}/>)
 });
 
 test('renders same number of options seasons are passed in', ()=>{
