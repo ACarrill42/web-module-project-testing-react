@@ -8,24 +8,38 @@ const testEpisode = {
     image: "http://static.tvmaze.com/uploads/images/medium_landscape/67/168918.jpg",
     season: 1,
     number: 1,
-    summary: "",
+    summary: "test text",
     runtime: 1
 }
 
 const testEpisodeWithoutImage = {
     //Add in approprate test data structure here.
+    image: null
 }
 
 test("renders without error", () => {
-
+  render(<Episode episode = {testEpisode}/>);
 });
 
 test("renders the summury test passed as prop", ()=>{
-    
+  render(<Episode episode = {testEpisode}/>)
+
+  const text = screen.queryByText(/test text/i);
+
+  expect(text).toBeTruthy()
+  expect(text).toBeInTheDocument()
+  expect(text).not.toBeNull()
+
 });
 
 test("renders default image when image is not defined", ()=>{
-    
+  render(<Episode episode = {testEpisodeWithoutImage}/>);
+  
+  const image = screen.getByRole('img');
+  const tag = screen.getByAltText('./stranger_things.png');
+
+  expect(image).toBeInTheDocument()
+  expect(tag).toBeInTheDocument()
 })
 
 //Tasks
